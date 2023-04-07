@@ -29,11 +29,8 @@ public class TennisStatsRepositoryImpl implements TennisStatsRepository {
         ResponseEntity<String> response = restTemplate.getForEntity("https://data.latelier.co/training/tennis_stats/headtohead.json", String.class);
 
         JSONObject jsonObject = new JSONObject(response.getBody());
-        System.out.println("response.getBody() ++++++++++++++++++++++++++++++++++++++++++"+jsonObject.getJSONArray("players"));
         ObjectMapper mapper = new ObjectMapper();
         players = objectMapper.readValue(jsonObject.getJSONArray("players").toString(), objectMapper.getTypeFactory().constructCollectionType(List.class, Player.class));
-        System.out.println("response.getBody() 2++++++++++++++++++++++++++++++++++++++++++"+players);
-        // players = mapper.readValue(response.getBody(), new TypeReference<List<Player>>() {});
 
     }
 
